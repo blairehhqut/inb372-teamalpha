@@ -1,0 +1,80 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+	<title>Sample jQuery Mobile App</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+	
+    
+    <!-- Include this code to enable jQuery and jQuery Mobile -->
+    <link rel="stylesheet" type="text/css" href="lib/jquery/jquery.mobile-1.4.3.css"/>
+    <script src="lib/jquery/jquery-2.1.1.min.js"></script>
+    <script src="lib/jquery/jquery.mobile-1.4.3.js"></script>
+    
+    <!-- index.js is where our program logic\code is -->
+    <script src="index.js"></script>
+    <script src="database.js"></script>
+    
+    
+    <!-- this stuff is to make the html code act more like a android app -->
+    <style type="text/css">
+		/* Prevent copy paste for all elements except text fields */
+		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+		input, textarea  { -webkit-user-select:text; }
+		body { background-color:white; color:black }
+	</style>
+	<script src='intelxdk.js'></script>
+	<script type="text/javascript">
+		/* Intel native bridge is available */
+		var onDeviceReady=function(){
+		//hide splash screen
+		intel.xdk.device.hideSplashScreen();
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+	</script>
+</head>
+
+    
+<body>
+    <!-- our html code starts here -->
+    <div data-role="page" id="mainPage">
+        <div data-role="content">
+            <input type="text" id="sometext"/>
+            <select data-role="flipswitch" id="truefalse">
+                <option value="false">False</option>
+                <option value="true">True</option>
+            </select>
+            <select id="color">
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+            </select>
+            <a data-role="button" id="addtodb">Add to DB</a>
+            <div id="countDiv">
+            </div>
+        </div>
+        <div data-role="content" style="position:fixed;bottom:0;width:90%">
+            <a href="#recordsPage" data-role="button" id="showRecords">Show Records</a>
+        </div>
+    </div>
+    <div data-role="page" id="recordsPage">
+        <div data-role="content">
+            <a href="#mainPage" data-role="button">Back</a>
+            <a data-role="button" id="clearData">Clear Data</a>
+            <hr/>
+            <table data-role="table" class="table-stripe" data-mode="column" id="recordsTable">
+                <thead>
+                    <tr>
+                        <th>Text</th>
+                        <th>True or False</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>       
+        </div>   
+    </div>
+</body>
+</html>
